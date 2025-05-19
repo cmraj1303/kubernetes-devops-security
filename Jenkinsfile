@@ -12,7 +12,7 @@ pipeline {
           mvn clean package -DskipTests=true \
             -Dorg.slf4j.simpleLogger.defaultLogLevel=warn
         '''
-        archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+        archiveArtifacts artifacts: 'target/*.jar', fingerprint: true //test 
       }
     }
   }
