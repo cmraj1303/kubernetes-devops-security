@@ -15,10 +15,17 @@ pipeline {
         archiveArtifacts artifacts: 'target/*.jar', fingerprint: true //test 
       }
     }
-    stage('unit testing') {
+     stage('Unit Tests - JUnit and Jacoco') {
       steps {
         sh "mvn test"
-            }
-        }  
+      }
+      post {
+        always {
+          junit 'target/surefire-reports/*.xml'
+          jacoco execPattern: 'target/jacoco.exec'
+        }
+      }
+    }
+
     }
 }
