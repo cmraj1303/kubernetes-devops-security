@@ -15,5 +15,10 @@ pipeline {
         archiveArtifacts artifacts: 'target/*.jar', fingerprint: true //test 
       }
     }
-  }
+    stage('unit testing') {
+      steps {
+        sh "mvn test"
+            }
+        }  
+    }
 }
