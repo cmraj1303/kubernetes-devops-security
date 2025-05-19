@@ -4,8 +4,10 @@ pipeline {
   stages {
       stage('Build Artifact') {
             steps {
-              sh "mvn clean package -DskipTests=true"
-              archive 'target/*.jar' //so that they can be downloaded later
+              sh "mvn clean package -DskipTests=true \
+  -Dorg.slf4j.simpleLogger.defaultLogLevel=warn \
+  --add-opens java.base/java.lang=ALL-UNNAMED"
+              archive 'target/*.jar'
             }
         }   
     }
