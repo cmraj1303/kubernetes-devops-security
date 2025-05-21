@@ -95,6 +95,8 @@
    <configuration>
       <format>ALL</format>
       <failBuildOnCVSS>5</failBuildOnCVSS>
+</plugin>
+	   
 	</plugins>
 	</build>
 
