@@ -1,20 +1,23 @@
 #!/bin/bash
 
-dockerImageName=$(awk 'NR==1 {print $2}' Dockerfile)
-echo $dockerImageName
+# Step 1: Build the Docker image
+docker build -t myapp:latest .
 
+# Step 2: Set image name
+dockerImageName="myapp:latest"
+echo "Scanning image: $dockerImageName"
+
+# Step 3: Run Trivy scans
 docker run --rm -v $WORKSPACE:/root/.cache/ aquasec/trivy:0.17.2 -q image --exit-code 0 --severity HIGH --light $dockerImageName
 docker run --rm -v $WORKSPACE:/root/.cache/ aquasec/trivy:0.17.2 -q image --exit-code 1 --severity CRITICAL --light $dockerImageName
 
-    # Trivy scan result processing
-    exit_code=$?
-    echo "Exit Code : $exit_code"
+# Step 4: Capture and process exit code
+exit_code=$?
+echo "Exit Code : $exit_code"
 
-    # Check scan results
-    if [[ "${exit_code}" == 1 ]]; then
-        echo "Image scanning failed. Vulnerabilities found"
-        exit 1;
-    else
-        echo "Image scanning passed. No CRITICAL vulnerabilities found"
-    fi;
-
+if [[ "${exit_code}" == 1 ]]; then
+    echo "Image scanning failed. Vulnerabilities found"
+    exit 1
+else
+    echo "Image scanning passed. No CRITICAL vulnerabilities found"
+fi
