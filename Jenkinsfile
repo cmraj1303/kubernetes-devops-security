@@ -129,7 +129,6 @@ pipeline {
         }
       }
     }
-  }
 
    stage('OWASP ZAP - DAST') {
       steps {
@@ -138,6 +137,7 @@ pipeline {
         }
       }
     }
+  }
 
   post {
     always {
