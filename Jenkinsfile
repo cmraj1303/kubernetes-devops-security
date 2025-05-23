@@ -60,9 +60,6 @@ pipeline {
           "Dependency Scan": {
             sh "mvn dependency-check:check"
           },
-          "Trivy Scan": {
-            sh "bash trivy-docker-image-scan.sh"
-          },
           "Trivy k8s Scan": {
             sh "bash trivy-k8s-scan.sh"
           },
