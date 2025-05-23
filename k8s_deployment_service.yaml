@@ -23,6 +23,11 @@ spec:
           runAsNonRoot: true
           runAsUser: 100
           readOnlyRootFilesystem: true
+      containers:
+      - name: node-app
+        image: cmraj1303/node-service:v1
+        ports:
+      - containerPort: 5000
 ---
 apiVersion: v1
 kind: Service
