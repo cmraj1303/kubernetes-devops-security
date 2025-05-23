@@ -130,6 +130,7 @@ stage('Integration Tests - DEV') {
         }
       }
     }
+  )
 
 post {
   always {
@@ -149,5 +150,5 @@ post {
 
 }
 
-}
+
 
