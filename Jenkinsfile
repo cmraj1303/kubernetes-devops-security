@@ -63,7 +63,7 @@ pipeline {
           "Trivy Scan": {
             sh "bash trivy-docker-image-scan.sh"
           },
-          "Trivy Scan": {
+          "Trivy k8s Scan": {
             sh "bash trivy-k8s-scan.sh"
           },
           "OPA Conftest": {
