@@ -112,9 +112,8 @@ pipeline {
         )
       }
     }
-  }
 
-  stage('Integration Tests - DEV') {
+    stage('Integration Tests - DEV') {
       steps {
         script {
           try {
@@ -130,10 +129,11 @@ pipeline {
         }
       }
     }
-}
 
-post {
-  always {
+  }
+
+  post {
+    always {
       junit 'target/surefire-reports/*.xml'
       jacoco execPattern: 'target/jacoco.exec'
       pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
@@ -147,11 +147,6 @@ post {
     // failure {
 
     // }
+  }
 
 }
-
-}
-
-
-
-
