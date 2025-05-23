@@ -131,8 +131,6 @@ stage('Integration Tests - DEV') {
       }
     }
 
-  }
-
 post {
   always {
       junit 'target/surefire-reports/*.xml'
